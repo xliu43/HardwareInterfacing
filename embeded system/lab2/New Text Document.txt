@@ -1,0 +1,40 @@
+CheckLeftKeyPress:   BRSET PT1AD1,#%00001000,OnLeftKeyPress     ;if (left)enable key is pressed 
+           
+           BRA LOOP                  
+                  
+OnCenterKeyUp:   bclr PT1AD1,#%11100000  ;clear All LEDs 
+                  RTS 
+           
+ 
+OnLeftKeyPress:  BRSET PT1AD1,#%00010000,OnUpSwitchPress 
+                 BRSET PT1AD1,#%00000100,OnDownSwitchPress
+                
+                
+                
+ 
+  
+
+
+
+OnUpSwitchPress: LDX #10
+                 JSR Delay
+                 BRCLR PT1AD1,#%00010000,OnUpSwitchUp
+                 RTA OnLeftKeyPress
+OnUpSwitchUp:    LDD PT1AD1                               ;if up switch released,add 1 
+                 ADDA #%00100000 
+                 STD PT1AD1 
+                 RTS OnLeftKeyPress  
+                 
+OnDownSwitchPress: LDX #10
+                   JSR Delay 
+                   BRCLR PT1AD1, #00000100,OnDownSwitchUp
+                   RTS
+OnDownSwitchUp:   LDD PT1AD1
+                  SUBA #%00100000
+                  STD PT1AD1 
+                  RTS  
+                  
+                  
+ReadPORTandClearLEDbits: LDD PT1AD1          ;load port state 
+                         ANDA #%00011111    ;clear first three bits so has clean switch state 
+                         rts  
