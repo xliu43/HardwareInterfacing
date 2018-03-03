@@ -22,3 +22,15 @@ void Set_R_C(char,char);
 void lcdLabels(char*,char*,char*,char*);  
 
 
+/*
+ hwo to use sprintf 
+ declare str variable 
+ char str [20];
+ sprintf(str,"%3X", value variable)      3 chars wide uppercase hex  if x lowercase hex 
+ %5.3f  5 chars wide 3 decimals floating point 
+ %03X - pad with zeros in front 
+ %010.4f  pad with zeors 10chars wide 4 decimals 
+
+
+
+*/
