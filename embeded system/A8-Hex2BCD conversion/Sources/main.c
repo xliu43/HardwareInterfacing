@@ -48,7 +48,7 @@
  unsigned char sw; 
  unsigned char counter;
  char pos;
- unsigned int valueToDisplay=0;
+ unsigned int valueToDisplay=0;             //hex value on top of 7seg display 
  unsigned int BCDValue;
  char str1[13]="input number";
  char str2[10]="too high!";
