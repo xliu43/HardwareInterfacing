@@ -8,11 +8,11 @@
 **************************************************************************/
 
 #include <hidef.h>         	// common defines and macros
-//#include <stdio.h>		    // ANSI C Standard Input/Output functions
-//#include <math.h>			      // ANSI C Mathematical functions
+#include <stdio.h>		    // ANSI C Standard Input/Output functions
+#include <math.h>			      // ANSI C Mathematical functions
 
 #include "derivative.h"    	// derivative-specific definitions
-#include "math.h"
+
 
 /********************************************************************
 *		Library includes - your libraries' header files
@@ -59,11 +59,11 @@ void main(void) 	// main entry point
 *		Initializations
 ********************************************************************/
              	double pi=3.141592654;
-         	int diameter=15;
+         	int diameter=11;
          	double circleArea=0;
          	double sphereArea=0;
          	double sphereVolumn=0; 
-	     char strArray[21];
+	     //char strArray[21];
 	        lcdInit();
             lcdLabels("INPUT DIAMETER: ","CIRCLE AREA: ","SPHERE AREA: ","SPHERE  VOL: ");  
  
@@ -77,7 +77,8 @@ void main(void) 	// main entry point
 	
 	for (;;)		//endless program loop
 	{
-                                                                  
+               circleArea= 4*pi*(diameter/2.0) *   (diameter/2.0)*sqrt(diameter);
+                                                   
   
     
 

@@ -41,10 +41,9 @@
   double cArea=0;
   double sArea=0;
   double sVol=0;
-   double diameter=18;
+   double diameter=9;
   double radius=0;   
   char str[21];
-
           
 /********************************************************************
 *		Lookups
@@ -54,11 +53,13 @@
 
 void main(void) 	// main entry point
 {
-           	_DISABLE_COP();
+           //	_DISABLE_COP();
 /********************************************************************
 *		Initializations
 ********************************************************************/
- lcdInit();
+ lcdInit();            
+  
+
   radius=diameter/2.0;                                                                                                              //be careful of int dividing if not 2.0
  
      cArea=_M_PI* pow(radius,2);
