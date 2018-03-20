@@ -39,7 +39,7 @@
 ********************************************************************/
 
  //unsigned char Pos;
-  char counter=0;
+ unsigned char counter=0;          
   char countFlag=0;
   char str[20]="";
 
@@ -65,11 +65,11 @@ void main(void) 	// main entry point
   SCI0_TxString("\x1B[4;10H") ;  
   SCI0_TxString("2       -Stop the Count") ; 
   SCI0_TxString("\x1B[5;10H") ;  
-  SCI0_TxString("3      -Clear the count") ; 
+  SCI0_TxString("3       -Clear the count") ; 
   SCI0_TxString("\x1B[6;10H") ;  
-  SCI0_TxString("4     -Exit the program") ;
+  SCI0_TxString("4       -Exit the program") ;
   SCI0_TxString("\x1B[7;30H") ;  
-  SCI0_TxString("Current Count: 00") ;
+  SCI0_TxString("Current Count:   ") ;
    
   
   
@@ -87,27 +87,35 @@ void main(void) 	// main entry point
                   case 0x31: //1 is pressed
                   countFlag=1;
                   break;
-                  case 0x32:
+                  case 0x32:  //2 is pressed
                   countFlag=0;
                   break;
-                  case 0x33:
+                  case 0x33: //3 is pressed 
                   counter=0;
+                  countFlag=0;
+                 SCI0_TxString("\x1B[7;48H") ;              
+                 sprintf(str,"%02X",counter);
+                SCI0_TxString(str) ;     
+                   
                   break;
-                  case 0x34:
+                  case 0x34: //4 is pressed
                   SCI0_TxString("\x1B[2J\x1B[H") ;    //clear and home 
+                  countFlag=0;
                   break;
                 
                 }
           }
           if(countFlag){
               counter++;
-              if (counter>240)
-                 counter=0;
-               SCI0_TxString("\x1B[7;30H") ;              
-              sprintf(str,"Current Count: %03X",counter);
+               SCI0_TxString("\x1B[7;48H") ;              
+              sprintf(str,"%02X",counter);
                 SCI0_TxString(str) ;     
-              Delay_C(500);
-          }
+              Delay_C(100);
+          } 
+          
+          
+             
+         
           
           
 	}
