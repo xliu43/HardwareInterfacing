@@ -106,7 +106,7 @@ void main(void) 	// main entry point
                      }while(RxData!=0x0d);
   
                y=atof(destStringTwo);
-               destString[0]='\0';                                      //clear the 
+               destString[0]='\0';                                      //clear the  destString array 
                
                //print N1
                
