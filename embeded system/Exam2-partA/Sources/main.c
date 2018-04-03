@@ -65,9 +65,9 @@ void main(void) 	// main entry point
             SCI0_Init19200();
          
          //  LEDS_7Seg_Init_C();
-        //  SCI0_TxString("\x1B[1;1H") ; 
+          SCI0_TxString("\x1B[1;1H") ; 
           SCI0_TxString("A/D Sample(Hex)  Sampled Voltage") ; 
- 
+          SCI0_TxString("\x1B[2;1H") ; 
 
 
 /********************************************************************
@@ -76,18 +76,31 @@ void main(void) 	// main entry point
 	
 	for (;;)		//endless program loop
 	{
+	
+	          
                  ATDSample=  ATD0_Sample7();     
                    VoltageIn=(double)ATDSample*0.005;
                    counter++;
-                   //cursor down
+                  
+                   sprintf(str,"%03X",ATDSample);
+                    SCI0_TxString(str) ; 
+                   sprintf(str,"                 %5.3f",VoltageIn);
+                    SCI0_TxString(str) ; 
+                    
+                       //cursor down
                     SCI0_TxString("\x1B[B ") ;
                     //cursor backwards
-                    SCI0_TxString("\x1B[5D ") ;  
-                   sprintf(str,"%03X",ATDSample);
-                     SCI0_TxString(str) ; 
+                    SCI0_TxString("\x1B[27D ") ;  
                   Delay_C(1000); 
                   
-                  
+                 if(counter>24)  {
+                             SCI0_TxString("\x1B[2J\x1B[H") ;    //clear and home 
+                                  SCI0_TxString("\x1B[1;1H") ; 
+          SCI0_TxString("A/D Sample(Hex)  Sampled Voltage") ; 
+          SCI0_TxString("\x1B[2;1H") ; 
+                       counter=0;
+                 }
+                          
           
 
 	}
