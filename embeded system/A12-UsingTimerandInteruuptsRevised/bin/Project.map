@@ -1,50 +1,54 @@
-*** EVALUATION ************************************************************************************************
-*********************************************************************************************
-LINKING FAILED
-The linking process failed in some stage.
-Depending on the phase the linker failed, part of the information contained in this map file may be inaccurate or wrong.
-If the linking failed before the allocation phase finished, then the addresses might be inaccurate.
-Also summary information like the code size is likely to be misleading.
----------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------
-
-PROGRAM "C:\Users\xliu43\Documents\GitHub\HardwareInterfacing\embeded system\A12-UsingTimerAndInterrupts\bin\Project.abs"
+*** EVALUATION ***
+PROGRAM "C:\Users\xliu43\Documents\GitHub\HardwareInterfacing\embeded system\A12-UsingTimerandInteruuptsRevised\bin\Project.abs"
 
 *********************************************************************************************
 TARGET SECTION
 ---------------------------------------------------------------------------------------------
 Processor   : Freescale HC12
-Memory Model: BANKED
+Memory Model: SMALL
 File Format : ELF\DWARF 2.0
 Linker      : SmartLinker V-5.0.40 Build 10203, Jul 23 2010
 
 *********************************************************************************************
 FILE SECTION
 ---------------------------------------------------------------------------------------------
-mc9s12xdp512.c.o                        Model: BANKED,        Lang: ANSI-C
-main.c.o                                Model: BANKED,        Lang: ANSI-C
-Start12.c.o                             Model: BANKED,        Lang: ANSI-C
+mc9s12xdp512.c.o                        Model: SMALL,         Lang: ANSI-C
+main.c.o                                Model: SMALL,         Lang: ANSI-C
+Start12.c.o                             Model: SMALL,         Lang: ANSI-C
+PRINTF.C.o (ansixs.lib)                 Model: SMALL,         Lang: ANSI-C
+FADD.C.o (ansixs.lib)                   Model: SMALL,         Lang: ANSI-C
+FANSI.C.o (ansixs.lib)                  Model: SMALL,         Lang: ANSI-C
+FCMP.C.o (ansixs.lib)                   Model: SMALL,         Lang: ANSI-C
+FCONV.C.o (ansixs.lib)                  Model: SMALL,         Lang: ANSI-C
+FMUL.C.o (ansixs.lib)                   Model: SMALL,         Lang: ANSI-C
+FREGS.C.o (ansixs.lib)                  Model: SMALL,         Lang: ANSI-C
+rtshc12.c.o (ansixs.lib)                Model: SMALL,         Lang: ANSI-C
+VREGS.C.o (ansixs.lib)                  Model: SMALL,         Lang: ANSI-C
+LCD_4Line_C.c.o                         Model: SMALL,         Lang: ANSI-C
 
 *********************************************************************************************
 STARTUP SECTION
 ---------------------------------------------------------------------------------------------
-Entry point: 0xC000 (_Startup)
-_startupData is allocated at 0xC00F and uses 6 Bytes
+Entry point: 0xC029 (_Startup)
+_startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x2100     6
-  _Copy    *toCopyDownBeg 0xC031
+  _Range   pZeroOut       0x2100     33
+  _Copy    *toCopyDownBeg 0xD093
 } _startupData;
 
 *********************************************************************************************
 SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
-.init                             15     R     0xC000     0xC00E   ROM_C000
-.startData                        34     R     0xC00F     0xC030   ROM_C000
-.copy                              2     R     0xC031     0xC032   ROM_C000
-.text                            119     R   0xFE8000   0xFE8076   PAGE_FE
+.init                             49     R     0xC000     0xC030   ROM_C000
+.startData                        34     R     0xC031     0xC052   ROM_C000
+.rodata                          212     R     0xC053     0xC126   ROM_C000
+.rodata1                          11     R     0xC127     0xC131   ROM_C000
+.text                           2951     R     0xC132     0xCCB8   ROM_C000
+.copy                              9     R     0xD093     0xD09B   ROM_C000
 .stack                           256   R/W     0x2000     0x20FF   RAM
+.data                              4   R/W     0x2100     0x2103   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
 .abs_section_a                     1   N/I        0xA        0xA   .absSeg2
@@ -693,19 +697,21 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_3ac                   2   N/I      0x3AC      0x3AD   .absSeg645
 .abs_section_3ae                   2   N/I      0x3AE      0x3AF   .absSeg646
 .abs_section_ffee                  2     R     0xFFEE     0xFFEF   .absSeg647
-.bss                               6   R/W     0x2100     0x2105   RAM
+.bss                               8   R/W     0x2104     0x210B   RAM
+.common                           21   R/W     0x210C     0x2120   RAM
+RUNTIME                          986     R     0xCCB9     0xD092   ROM_C000
 .vectSeg648_vect                   2     R     0xFFFE     0xFFFF   .vectSeg648
 
 Summary of section sizes per section type:
-READ_ONLY (R):          AE (dec:      174)
-READ_WRITE (R/W):      106 (dec:      262)
+READ_ONLY (R):        10A0 (dec:     4256)
+READ_WRITE (R/W):      121 (dec:      289)
 NO_INIT (N/I):         300 (dec:      768)
 
 *********************************************************************************************
 VECTOR-ALLOCATION SECTION
     Address     InitValue   InitFunction
 ---------------------------------------------------------------------------------------------
-     0xFFFE        0xC000   _Startup
+     0xFFFE        0xC029   _Startup
 
 *********************************************************************************************
 OBJECT-ALLOCATION SECTION
@@ -744,8 +750,8 @@ MODULE:                 -- mc9s12xdp512.c.o --
      _DBGXDHM                                    2E       1       1       0   .abs_section_2e
      _DBGXDLM                                    2F       1       1       0   .abs_section_2f
      _PPAGE                                      30       1       1       0   .abs_section_30
-     _PORTK                                      32       1       1       0   .abs_section_32
-     _DDRK                                       33       1       1       0   .abs_section_33
+     _PORTK                                      32       1       1       8   .abs_section_32
+     _DDRK                                       33       1       1       1   .abs_section_33
      _SYNR                                       34       1       1       0   .abs_section_34
      _REFDV                                      35       1       1       0   .abs_section_35
      _CRGFLG                                     37       1       1       0   .abs_section_37
@@ -755,19 +761,19 @@ MODULE:                 -- mc9s12xdp512.c.o --
      _RTICTL                                     3B       1       1       0   .abs_section_3b
      _COPCTL                                     3C       1       1       0   .abs_section_3c
      _ARMCOP                                     3F       1       1       0   .abs_section_3f
-     _TIOS                                       40       1       1       0   .abs_section_40
+     _TIOS                                       40       1       1       1   .abs_section_40
      _CFORC                                      41       1       1       0   .abs_section_41
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
-     _TSCR1                                      46       1       1       0   .abs_section_46
+     _TSCR1                                      46       1       1       1   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
      _TCTL1                                      48       1       1       0   .abs_section_48
-     _TCTL2                                      49       1       1       0   .abs_section_49
+     _TCTL2                                      49       1       1       2   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
-     _TIE                                        4C       1       1       0   .abs_section_4c
-     _TSCR2                                      4D       1       1       0   .abs_section_4d
-     _TFLG1                                      4E       1       1       0   .abs_section_4e
+     _TIE                                        4C       1       1       1   .abs_section_4c
+     _TSCR2                                      4D       1       1       2   .abs_section_4d
+     _TFLG1                                      4E       1       1       2   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
      _PACTL                                      60       1       1       0   .abs_section_60
      _PAFLG                                      61       1       1       0   .abs_section_61
@@ -1135,9 +1141,9 @@ MODULE:                 -- mc9s12xdp512.c.o --
      _PPSP                                      25D       1       1       0   .abs_section_25d
      _PIEP                                      25E       1       1       0   .abs_section_25e
      _PIFP                                      25F       1       1       0   .abs_section_25f
-     _PTH                                       260       1       1       0   .abs_section_260
+     _PTH                                       260       1       1       8   .abs_section_260
      _PTIH                                      261       1       1       0   .abs_section_261
-     _DDRH                                      262       1       1       0   .abs_section_262
+     _DDRH                                      262       1       1       4   .abs_section_262
      _RDRH                                      263       1       1       0   .abs_section_263
      _PERH                                      264       1       1       0   .abs_section_264
      _PPSH                                      265       1       1       0   .abs_section_265
@@ -1246,8 +1252,8 @@ MODULE:                 -- mc9s12xdp512.c.o --
      _DDRCD                                       6       2       2       0   .abs_section_6
      _PARTID                                     1A       2       2       0   .abs_section_1a
      _DBGTB                                      24       2       2       0   .abs_section_24
-     _TCNT                                       44       2       2       0   .abs_section_44
-     _TC0                                        50       2       2       0   .abs_section_50
+     _TCNT                                       44       2       2       1   .abs_section_44
+     _TC0                                        50       2       2       3   .abs_section_50
      _TC1                                        52       2       2       0   .abs_section_52
      _TC2                                        54       2       2       0   .abs_section_54
      _TC3                                        56       2       2       0   .abs_section_56
@@ -1363,40 +1369,151 @@ MODULE:                 -- mc9s12xdp512.c.o --
      _XGR7                                      3AE       2       2       0   .abs_section_3ae
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                    FE8000      42      66       2   .text       
-     TimerInterval                           FE8042       C      12       0   .text       
+     main                                      C132      A2     162       1   .text       
+     TimerInterval                             C1D4       C      12       1   .text       
 - VARIABLES:
-     iTicks                                    2100       2       2       0   .bss        
-     iSeconds                                  2102       2       2       0   .bss        
-     iMinutes                                  2104       2       2       0   .bss        
+     STRING..02u.1                             C127       5       5       1   .rodata1    
+     STRING...02u.2                            C12C       6       6       1   .rodata1    
+     iSeconds                                  2100       2       2       5   .data       
+     iMinutes                                  2102       2       2       3   .data       
+     iTicks                                    2104       2       2       2   .bss        
      _Vector_8                                 FFEE       2       2       0   .abs_section_ffee
+     str                                       210C      15      21       4   .common     
 MODULE:                 -- Start12.c.o --
 - PROCEDURES:
-     Init                                    FE804E      29      41       2   .text       
-     _Startup                                  C000       F      15       0   .init       
+     Init                                      C000      29      41       1   .init       
+     _Startup                                  C029       8       8       0   .init       
 - VARIABLES:
-     _startupData                              C00F       6       6       0   .startData  
+     _startupData                              C031       6       6       3   .startData  
 - LABELS:
      __SEG_END_SSTACK                          2100       0       0       1               
+MODULE:                 -- PRINTF.C.o (ansixs.lib) --
+- PROCEDURES:
+     Ten                                       C1E0      AC     172       3   .text       
+     vprintf                                   C28C     8D4    2260     107   .text       
+     _out                                      CB60       9       9      14   .text       
+     deposit_char                              CB69       A      10       1   .text       
+     sprintf                                   CB73      27      39       2   .text       
+- VARIABLES:
+     pow10                                     C053      28      40       4   .rodata     
+     pow16                                     C07B      20      32       4   .rodata     
+     pow8                                      C09B      2C      44       4   .rodata     
+     fpow10                                    C0C7      30      48       1   .rodata     
+     fpow_10                                   C0F7      30      48       1   .rodata     
+     pbuf                                      2106       6       6      14   .bss        
+MODULE:                 -- FADD.C.o (ansixs.lib) --
+- PROCEDURES:
+     F_ADDKL                                   CCB9      5E      94       1   RUNTIME     
+     _FADD                                     CD17      15      21       3   RUNTIME     
+     _FSUB                                     CD2C      13      19       1   RUNTIME     
+     _FNEG                                     CD3F       B      11       1   RUNTIME     
+- VARIABLES:
+MODULE:                 -- FANSI.C.o (ansixs.lib) --
+- PROCEDURES:
+     F_FREXP                                   CD4A      1F      31       1   RUNTIME     
+     frexpf                                    CD69      19      25       1   RUNTIME     
+- VARIABLES:
+MODULE:                 -- FCMP.C.o (ansixs.lib) --
+- PROCEDURES:
+     _FCMP                                     CD82      26      38       2   RUNTIME     
+- VARIABLES:
+MODULE:                 -- FCONV.C.o (ansixs.lib) --
+- PROCEDURES:
+     F_TOLONGK                                 CDA8      32      50       1   RUNTIME     
+     F_FRLONGK                                 CDDA      1E      30       1   RUNTIME     
+     _FUFLOAT                                  CDF8      12      18       1   RUNTIME     
+     _FSTRUNC                                  CE0A      11      17       1   RUNTIME     
+     _FUTRUNC                                  CE1B       3       3       2   RUNTIME     
+- VARIABLES:
+MODULE:                 -- FMUL.C.o (ansixs.lib) --
+- PROCEDURES:
+     F_MULKL                                   CE1E      57      87       1   RUNTIME     
+     _FMUL                                     CE75      14      20       7   RUNTIME     
+- VARIABLES:
+MODULE:                 -- FREGS.C.o (ansixs.lib) --
+- PROCEDURES:
+     F_PULK                                    CE89      15      21       3   RUNTIME     
+     F_PULL                                    CE9E      15      21       3   RUNTIME     
+     F_PSHK                                    CEB3      13      19       4   RUNTIME     
+     F_TLK                                     CEC6       D      13       1   RUNTIME     
+     F_XGKL                                    CED3      21      33       2   RUNTIME     
+     F_CLRK                                    CEF4       B      11       2   RUNTIME     
+     F_MAXK                                    CEFF       9       9       1   RUNTIME     
+     F_NORMK                                   CF08      37      55       3   RUNTIME     
+- VARIABLES:
+MODULE:                 -- rtshc12.c.o (ansixs.lib) --
+- PROCEDURES:
+     _BDIVMODS                                 CF3F       B      11       4   RUNTIME     
+     _LNEG                                     CF4A       9       9       1   RUNTIME     
+     _lDivMod                                  CF53      B9     185       2   RUNTIME     
+     _LDIVU                                    D00C       E      14       1   RUNTIME     
+     _NEG_P                                    D01A       C      12       1   RUNTIME     
+     _LMODU                                    D026      11      17       1   RUNTIME     
+     _CASE_DIRECT_BYTE                         D037       5       5       1   RUNTIME     
+     _CASE_CHECKED_BYTE                        D03C      14      20       1   RUNTIME     
+     _CASE_SEARCH_8                            D050      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       D067      1A      26       1   RUNTIME     
+- VARIABLES:
+MODULE:                 -- VREGS.C.o (ansixs.lib) --
+- PROCEDURES:
+     L_NEGK                                    D081       7       7       1   RUNTIME     
+     L_PSHK                                    D088       8       8       1   RUNTIME     
+     UL_PULK                                   D090       3       3       1   RUNTIME     
+- VARIABLES:
+MODULE:                 -- LCD_4Line_C.c.o --
+- PROCEDURES:
+     lcdRWUp                                   CB9A       4       4       1   .text       
+     lcdEUp                                    CB9E       4       4       4   .text       
+     lcdEDown                                  CBA2       4       4       4   .text       
+     lcdRSUp                                   CBA6       4       4       1   .text       
+     lcdRSDown                                 CBAA       4       4       1   .text       
+     lcdSDelay                                 CBAE       7       7       3   .text       
+     lcdLDelay                                 CBB5       7       7       4   .text       
+     lcdInit                                   CBBC      3E      62       1   .text       
+     lcdInst                                   CBFA      19      25       1   .text       
+     lcdData                                   CC13      1B      27       1   .text       
+     lcdBusy                                   CC2E      24      36       3   .text       
+     lcdAddr                                   CC52       C      12       1   .text       
+     lcdString                                 CC5E      26      38       2   .text       
+     Set_R_C                                   CC84      35      53       2   .text       
+- VARIABLES:
 
 *********************************************************************************************
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   mc9s12xdp512.c.o                           768      0      0
-  main.c.o                                     6     78      2
-  Start12.c.o                                  0     56      0
-  other                                      256     36      2
+  main.c.o                                    27    174     13
+  Start12.c.o                                  0     49      0
+  PRINTF.C.o (ansixs.lib)                      6   2490    212
+  FADD.C.o (ansixs.lib)                        0    145      0
+  FANSI.C.o (ansixs.lib)                       0     56      0
+  FCMP.C.o (ansixs.lib)                        0     38      0
+  FCONV.C.o (ansixs.lib)                       0    118      0
+  FMUL.C.o (ansixs.lib)                        0    107      0
+  FREGS.C.o (ansixs.lib)                       0    182      0
+  rtshc12.c.o (ansixs.lib)                     0    322      0
+  VREGS.C.o (ansixs.lib)                       0     18      0
+  LCD_4Line_C.c.o                              0    287      0
+  other                                      256     36      9
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  main TimerInterval Init 
+  main TimerInterval Ten vprintf _out deposit_char sprintf lcdRWUp lcdEUp 
+  lcdEDown lcdRSUp lcdRSDown lcdSDelay lcdLDelay lcdInit lcdInst lcdData 
+  lcdBusy lcdAddr lcdString Set_R_C 
+SECTION: ".data"
+  iSeconds iMinutes 
 SECTION: ".bss"
-  iTicks iSeconds iMinutes 
+  iTicks pbuf 
 SECTION: ".init"
-  _Startup 
+  Init _Startup 
+SECTION: ".rodata"
+  pow10 pow16 pow8 fpow10 fpow_10 
+SECTION: ".rodata1"
+  STRING..02u.1 STRING...02u.2 
 SECTION: ".abs_section_8"
   _PORTE 
 SECTION: ".abs_section_9"
@@ -2693,6 +2810,14 @@ SECTION: ".abs_section_3ae"
   _XGR7 
 SECTION: ".abs_section_ffee"
   _Vector_8 
+SECTION: ".common"
+  str 
+SECTION: "RUNTIME"
+  F_ADDKL _FADD _FSUB _FNEG F_FREXP frexpf _FCMP F_TOLONGK F_FRLONGK _FUFLOAT 
+  _FSTRUNC _FUTRUNC F_MULKL _FMUL F_PULK F_PULL F_PSHK F_TLK F_XGKL F_CLRK 
+  F_MAXK F_NORMK _BDIVMODS _LNEG _lDivMod _LDIVU _NEG_P _LMODU 
+  _CASE_DIRECT_BYTE _CASE_CHECKED_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE 
+  L_NEGK L_PSHK UL_PULK 
 
 *********************************************************************************************
 OBJECT LIST SORTED BY ADDRESS
@@ -2734,8 +2859,8 @@ OBJECT LIST SORTED BY ADDRESS
      _DBGXDHM                                    2E       1       1       0   .abs_section_2e
      _DBGXDLM                                    2F       1       1       0   .abs_section_2f
      _PPAGE                                      30       1       1       0   .abs_section_30
-     _PORTK                                      32       1       1       0   .abs_section_32
-     _DDRK                                       33       1       1       0   .abs_section_33
+     _PORTK                                      32       1       1       8   .abs_section_32
+     _DDRK                                       33       1       1       1   .abs_section_33
      _SYNR                                       34       1       1       0   .abs_section_34
      _REFDV                                      35       1       1       0   .abs_section_35
      _CRGFLG                                     37       1       1       0   .abs_section_37
@@ -2745,22 +2870,22 @@ OBJECT LIST SORTED BY ADDRESS
      _RTICTL                                     3B       1       1       0   .abs_section_3b
      _COPCTL                                     3C       1       1       0   .abs_section_3c
      _ARMCOP                                     3F       1       1       0   .abs_section_3f
-     _TIOS                                       40       1       1       0   .abs_section_40
+     _TIOS                                       40       1       1       1   .abs_section_40
      _CFORC                                      41       1       1       0   .abs_section_41
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
-     _TCNT                                       44       2       2       0   .abs_section_44
-     _TSCR1                                      46       1       1       0   .abs_section_46
+     _TCNT                                       44       2       2       1   .abs_section_44
+     _TSCR1                                      46       1       1       1   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
      _TCTL1                                      48       1       1       0   .abs_section_48
-     _TCTL2                                      49       1       1       0   .abs_section_49
+     _TCTL2                                      49       1       1       2   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
-     _TIE                                        4C       1       1       0   .abs_section_4c
-     _TSCR2                                      4D       1       1       0   .abs_section_4d
-     _TFLG1                                      4E       1       1       0   .abs_section_4e
+     _TIE                                        4C       1       1       1   .abs_section_4c
+     _TSCR2                                      4D       1       1       2   .abs_section_4d
+     _TFLG1                                      4E       1       1       2   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
-     _TC0                                        50       2       2       0   .abs_section_50
+     _TC0                                        50       2       2       3   .abs_section_50
      _TC1                                        52       2       2       0   .abs_section_52
      _TC2                                        54       2       2       0   .abs_section_54
      _TC3                                        56       2       2       0   .abs_section_56
@@ -3182,9 +3307,9 @@ OBJECT LIST SORTED BY ADDRESS
      _PPSP                                      25D       1       1       0   .abs_section_25d
      _PIEP                                      25E       1       1       0   .abs_section_25e
      _PIFP                                      25F       1       1       0   .abs_section_25f
-     _PTH                                       260       1       1       0   .abs_section_260
+     _PTH                                       260       1       1       8   .abs_section_260
      _PTIH                                      261       1       1       0   .abs_section_261
-     _DDRH                                      262       1       1       0   .abs_section_262
+     _DDRH                                      262       1       1       4   .abs_section_262
      _RDRH                                      263       1       1       0   .abs_section_263
      _PERH                                      264       1       1       0   .abs_section_264
      _PPSH                                      265       1       1       0   .abs_section_265
@@ -3345,35 +3470,179 @@ OBJECT LIST SORTED BY ADDRESS
      _XGR5                                      3AA       2       2       0   .abs_section_3aa
      _XGR6                                      3AC       2       2       0   .abs_section_3ac
      _XGR7                                      3AE       2       2       0   .abs_section_3ae
-     iTicks                                    2100       2       2       0   .bss        
-     iSeconds                                  2102       2       2       0   .bss        
-     iMinutes                                  2104       2       2       0   .bss        
-     _Startup                                  C000       F      15       0   .init       
+     iSeconds                                  2100       2       2       5   .data       
+     iMinutes                                  2102       2       2       3   .data       
+     iTicks                                    2104       2       2       2   .bss        
+     pbuf                                      2106       6       6      14   .bss        
+     str                                       210C      15      21       4   .common     
+     Init                                      C000      29      41       1   .init       
+     _Startup                                  C029       8       8       0   .init       
+     pow10                                     C053      28      40       4   .rodata     
+     pow16                                     C07B      20      32       4   .rodata     
+     pow8                                      C09B      2C      44       4   .rodata     
+     fpow10                                    C0C7      30      48       1   .rodata     
+     fpow_10                                   C0F7      30      48       1   .rodata     
+     STRING..02u.1                             C127       5       5       1   .rodata1    
+     STRING...02u.2                            C12C       6       6       1   .rodata1    
+     main                                      C132      A2     162       1   .text       
+     TimerInterval                             C1D4       C      12       1   .text       
+     Ten                                       C1E0      AC     172       3   .text       
+     vprintf                                   C28C     8D4    2260     107   .text       
+     _out                                      CB60       9       9      14   .text       
+     deposit_char                              CB69       A      10       1   .text       
+     sprintf                                   CB73      27      39       2   .text       
+     lcdRWUp                                   CB9A       4       4       1   .text       
+     lcdEUp                                    CB9E       4       4       4   .text       
+     lcdEDown                                  CBA2       4       4       4   .text       
+     lcdRSUp                                   CBA6       4       4       1   .text       
+     lcdRSDown                                 CBAA       4       4       1   .text       
+     lcdSDelay                                 CBAE       7       7       3   .text       
+     lcdLDelay                                 CBB5       7       7       4   .text       
+     lcdInit                                   CBBC      3E      62       1   .text       
+     lcdInst                                   CBFA      19      25       1   .text       
+     lcdData                                   CC13      1B      27       1   .text       
+     lcdBusy                                   CC2E      24      36       3   .text       
+     lcdAddr                                   CC52       C      12       1   .text       
+     lcdString                                 CC5E      26      38       2   .text       
+     Set_R_C                                   CC84      35      53       2   .text       
+     F_ADDKL                                   CCB9      5E      94       1   RUNTIME     
+     _FADD                                     CD17      15      21       3   RUNTIME     
+     _FSUB                                     CD2C      13      19       1   RUNTIME     
+     _FNEG                                     CD3F       B      11       1   RUNTIME     
+     F_FREXP                                   CD4A      1F      31       1   RUNTIME     
+     frexpf                                    CD69      19      25       1   RUNTIME     
+     _FCMP                                     CD82      26      38       2   RUNTIME     
+     F_TOLONGK                                 CDA8      32      50       1   RUNTIME     
+     F_FRLONGK                                 CDDA      1E      30       1   RUNTIME     
+     _FUFLOAT                                  CDF8      12      18       1   RUNTIME     
+     _FSTRUNC                                  CE0A      11      17       1   RUNTIME     
+     _FUTRUNC                                  CE1B       3       3       2   RUNTIME     
+     F_MULKL                                   CE1E      57      87       1   RUNTIME     
+     _FMUL                                     CE75      14      20       7   RUNTIME     
+     F_PULK                                    CE89      15      21       3   RUNTIME     
+     F_PULL                                    CE9E      15      21       3   RUNTIME     
+     F_PSHK                                    CEB3      13      19       4   RUNTIME     
+     F_TLK                                     CEC6       D      13       1   RUNTIME     
+     F_XGKL                                    CED3      21      33       2   RUNTIME     
+     F_CLRK                                    CEF4       B      11       2   RUNTIME     
+     F_MAXK                                    CEFF       9       9       1   RUNTIME     
+     F_NORMK                                   CF08      37      55       3   RUNTIME     
+     _BDIVMODS                                 CF3F       B      11       4   RUNTIME     
+     _LNEG                                     CF4A       9       9       1   RUNTIME     
+     _lDivMod                                  CF53      B9     185       2   RUNTIME     
+     _LDIVU                                    D00C       E      14       1   RUNTIME     
+     _NEG_P                                    D01A       C      12       1   RUNTIME     
+     _LMODU                                    D026      11      17       1   RUNTIME     
+     _CASE_DIRECT_BYTE                         D037       5       5       1   RUNTIME     
+     _CASE_CHECKED_BYTE                        D03C      14      20       1   RUNTIME     
+     _CASE_SEARCH_8                            D050      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       D067      1A      26       1   RUNTIME     
+     L_NEGK                                    D081       7       7       1   RUNTIME     
+     L_PSHK                                    D088       8       8       1   RUNTIME     
+     UL_PULK                                   D090       3       3       1   RUNTIME     
      _Vector_8                                 FFEE       2       2       0   .abs_section_ffee
-     main                                    FE8000      42      66       2   .text       
-     TimerInterval                           FE8042       C      12       0   .text       
-     Init                                    FE804E      29      41       2   .text       
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
 ---------------------------------------------------------------------------------------------
+NOT USED PROCEDURES
+PRINTF.C.o (ansixs.lib):
+  set_printf vsprintf 
+FADD.C.o (ansixs.lib):
+  _FINC _FDEC _FABS 
+FANSI.C.o (ansixs.lib):
+  F_MODF F_LDEXP modff RetErrDom ldexpf 
+FCONV.C.o (ansixs.lib):
+  _FSFLOAT 
+FMUL.C.o (ansixs.lib):
+  F_DIVKL _FDIV 
+FREGS.C.o (ansixs.lib):
+  F_STAL F_TKL F_CLRL 
+rtshc12.c.o (ansixs.lib):
+  _BSHL _BSHRS _BSHRU _BDIVMODU _ISHL _ISHRU _ISHRS _LSHL _LSHRU _LSHRS _LADD 
+  _LSUB _LAND _LOR _LXOR _LCMP _LCMP_P _LCMP_PP _LCOM _LINC _LDEC _LMUL 
+  _LMULU16x32 _LMULS16x32 _LDIVS _LMODS _ILSEXT _COPY _CASE_DIRECT 
+  _CASE_CHECKED _CASE_SEARCH _CASE_SEARCH_BYTE _FCALL _FPCMP _PADD _PSUB _PINC 
+  _PDEC 
+VREGS.C.o (ansixs.lib):
+  SL_PULK 
+LCD_4Line_C.c.o:
+  lcdRWDown lcdCGAddr lcdClear lcdLabels 
+NOT USED VARIABLES
+FANSI.C.o (ansixs.lib):
+  infinity errno 
+rtshc12.c.o (ansixs.lib):
+  _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC031 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xD093 ---- SIZE       4 ---
+Filling bytes inserted
+ 00032101
+------- ROM-ADDRESS: 0xD097 ---- RAM-ADDRESS: 0x2101 ---- SIZE       1 ---
+Name of initialized Object : iSeconds:1
+ 32
+------- ROM-ADDRESS: 0xD098 ---- SIZE       1 ---
+Filling bytes inserted
+ 00
+------- ROM-ADDRESS: 0xD099 ---- RAM-ADDRESS: 0x2103 ---- SIZE       1 ---
+Name of initialized Object : iMinutes:1
+ 3B
+------- ROM-ADDRESS: 0xD09A ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
 *********************************************************************************************
 OBJECT-DEPENDENCIES SECTION
 ---------------------------------------------------------------------------------------------
-_Startup                  USES __SEG_END_SSTACK Init main 
-_Vector_8                 USES TimerInterval 
-main                      USES _TSCR1 _TSCR2 _TIOS _TCTL2 _TIE _TFLG1 _TCNT 
-                                _TC0 iTicks iSeconds iMinutes 
-TimerInterval             USES _TFLG1 _TC0 
 Init                      USES _startupData 
+_Startup                  USES __SEG_END_SSTACK Init main 
+main                      USES _TSCR1 _TSCR2 _TIOS _TCTL2 _TIE _TFLG1 _TCNT 
+                                _TC0 lcdInit iTicks iSeconds iMinutes STRING..02u.1 
+                                str sprintf Set_R_C lcdString STRING...02u.2 
+TimerInterval             USES _TFLG1 _TC0 
+Ten                       USES fpow10 fpow_10 Ten _FMUL 
+vprintf                   USES vprintf _out _CASE_SEARCH_8_BYTE 
+                                _CASE_DIRECT_BYTE _CASE_SEARCH_8 pbuf _LNEG pow8 pow16 _FNEG 
+                                frexpf _FMUL _FADD _BDIVMODS Ten pow10 _FUTRUNC 
+                                _FUFLOAT _FSUB _LDIVU _FCMP _LMODU 
+_out                      USES pbuf 
+deposit_char              USES pbuf 
+sprintf                   USES pbuf deposit_char vprintf 
+lcdRWUp                   USES _PORTK 
+lcdEUp                    USES _PORTK 
+lcdEDown                  USES _PORTK 
+lcdRSUp                   USES _PORTK 
+lcdRSDown                 USES _PORTK 
+lcdInit                   USES _PTH _DDRH _PORTK _DDRK lcdLDelay lcdEUp 
+                                lcdEDown 
+lcdInst                   USES lcdBusy _PORTK _PTH _DDRH lcdSDelay lcdEUp 
+                                lcdEDown 
+lcdData                   USES lcdBusy _PORTK _PTH _DDRH lcdRSUp lcdEUp 
+                                lcdEDown 
+lcdBusy                   USES _DDRH lcdRSDown lcdRWUp lcdSDelay lcdEUp _PTH 
+                                lcdEDown 
+lcdAddr                   USES lcdBusy lcdInst 
+lcdString                 USES lcdData 
+Set_R_C                   USES _CASE_CHECKED_BYTE lcdAddr 
+F_ADDKL                   USES F_XGKL F_NORMK 
+_FADD                     USES F_PULK F_PULL F_ADDKL F_PSHK 
+_FSUB                     USES _FADD 
+F_FREXP                   USES F_NORMK 
+frexpf                    USES F_PULL F_TLK F_FREXP F_PSHK 
+_FUFLOAT                  USES UL_PULK F_FRLONGK F_PSHK 
+_FSTRUNC                  USES F_PULK F_TOLONGK L_PSHK 
+_FUTRUNC                  USES _FSTRUNC 
+F_MULKL                   USES F_CLRK F_NORMK 
+_FMUL                     USES F_PULK F_PULL F_MULKL F_PSHK 
+F_MAXK                    USES F_CLRK 
+F_NORMK                   USES F_MAXK 
+_LDIVU                    USES _lDivMod 
+_LMODU                    USES _lDivMod 
+L_NEGK                    USES _NEG_P 
+L_PSHK                    USES L_NEGK 
+_Vector_8                 USES TimerInterval 
 
 *********************************************************************************************
 DEPENDENCY TREE
@@ -3381,7 +3650,159 @@ DEPENDENCY TREE
  main and _Startup Group
  | 
  +- main                
- |    
+ |  | 
+ |  +- lcdInit             
+ |  |  | 
+ |  |  +- lcdLDelay           
+ |  |  |    
+ |  |  +- lcdEUp              
+ |  |  |    
+ |  |  +- lcdEDown            
+ |  |       
+ |  +- sprintf             
+ |  |  | 
+ |  |  +- deposit_char        
+ |  |  |    
+ |  |  +- vprintf             
+ |  |     | 
+ |  |     +- _out                
+ |  |     |    
+ |  |     +- _CASE_SEARCH_8_BYTE 
+ |  |     |    
+ |  |     +- _CASE_DIRECT_BYTE   
+ |  |     |    
+ |  |     +- _CASE_SEARCH_8      
+ |  |     |    
+ |  |     +- _LNEG               
+ |  |     |    
+ |  |     +- _FNEG               
+ |  |     |    
+ |  |     +- frexpf              
+ |  |     |  | 
+ |  |     |  +- F_PULL              
+ |  |     |  |    
+ |  |     |  +- F_TLK               
+ |  |     |  |    
+ |  |     |  +- F_FREXP             
+ |  |     |  |  | 
+ |  |     |  |  +- F_NORMK             
+ |  |     |  |     | 
+ |  |     |  |     +- F_MAXK              
+ |  |     |  |        | 
+ |  |     |  |        +- F_CLRK              
+ |  |     |  |             
+ |  |     |  +- F_PSHK              
+ |  |     |       
+ |  |     +- _FMUL               
+ |  |     |  | 
+ |  |     |  +- F_PULK              
+ |  |     |  |    
+ |  |     |  +- F_PULL               (see above)
+ |  |     |  |  
+ |  |     |  +- F_MULKL             
+ |  |     |  |  | 
+ |  |     |  |  +- F_CLRK               (see above)
+ |  |     |  |  |  
+ |  |     |  |  +- F_NORMK              (see above)
+ |  |     |  |     
+ |  |     |  +- F_PSHK               (see above)
+ |  |     |     
+ |  |     +- _FADD               
+ |  |     |  | 
+ |  |     |  +- F_PULK               (see above)
+ |  |     |  |  
+ |  |     |  +- F_PULL               (see above)
+ |  |     |  |  
+ |  |     |  +- F_ADDKL             
+ |  |     |  |  | 
+ |  |     |  |  +- F_XGKL              
+ |  |     |  |  |    
+ |  |     |  |  +- F_NORMK              (see above)
+ |  |     |  |     
+ |  |     |  +- F_PSHK               (see above)
+ |  |     |     
+ |  |     +- _BDIVMODS           
+ |  |     |    
+ |  |     +- Ten                 
+ |  |     |  | 
+ |  |     |  +- _FMUL                (see above)
+ |  |     |     
+ |  |     +- _FUTRUNC            
+ |  |     |  | 
+ |  |     |  +- _FSTRUNC            
+ |  |     |     | 
+ |  |     |     +- F_PULK               (see above)
+ |  |     |     |  
+ |  |     |     +- F_TOLONGK           
+ |  |     |     |    
+ |  |     |     +- L_PSHK              
+ |  |     |        | 
+ |  |     |        +- L_NEGK              
+ |  |     |           | 
+ |  |     |           +- _NEG_P              
+ |  |     |                
+ |  |     +- _FUFLOAT            
+ |  |     |  | 
+ |  |     |  +- UL_PULK             
+ |  |     |  |    
+ |  |     |  +- F_FRLONGK           
+ |  |     |  |    
+ |  |     |  +- F_PSHK               (see above)
+ |  |     |     
+ |  |     +- _FSUB               
+ |  |     |  | 
+ |  |     |  +- _FADD                (see above)
+ |  |     |     
+ |  |     +- _LDIVU              
+ |  |     |  | 
+ |  |     |  +- _lDivMod            
+ |  |     |       
+ |  |     +- _FCMP               
+ |  |     |    
+ |  |     +- _LMODU              
+ |  |        | 
+ |  |        +- _lDivMod             (see above)
+ |  |           
+ |  +- Set_R_C             
+ |  |  | 
+ |  |  +- _CASE_CHECKED_BYTE  
+ |  |  |    
+ |  |  +- lcdAddr             
+ |  |     | 
+ |  |     +- lcdBusy             
+ |  |     |  | 
+ |  |     |  +- lcdRSDown           
+ |  |     |  |    
+ |  |     |  +- lcdRWUp             
+ |  |     |  |    
+ |  |     |  +- lcdSDelay           
+ |  |     |  |    
+ |  |     |  +- lcdEUp               (see above)
+ |  |     |  |  
+ |  |     |  +- lcdEDown             (see above)
+ |  |     |     
+ |  |     +- lcdInst             
+ |  |        | 
+ |  |        +- lcdBusy              (see above)
+ |  |        |  
+ |  |        +- lcdSDelay            (see above)
+ |  |        |  
+ |  |        +- lcdEUp               (see above)
+ |  |        |  
+ |  |        +- lcdEDown             (see above)
+ |  |           
+ |  +- lcdString           
+ |     | 
+ |     +- lcdData             
+ |        | 
+ |        +- lcdBusy              (see above)
+ |        |  
+ |        +- lcdRSUp             
+ |        |    
+ |        +- lcdEUp               (see above)
+ |        |  
+ |        +- lcdEDown             (see above)
+ |           
  +- _Startup            
     | 
     +- Init                
@@ -3398,6 +3819,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 0
-Total size of all blocks to be downloaded: 0
+Number of blocks to be downloaded: 8
+Total size of all blocks to be downloaded: 4256
 
