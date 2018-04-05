@@ -73,7 +73,7 @@ void main(void) 	// main entry point
        //Write registers to set up the timer 
        TSCR1= 0b10000000; //turn the timer on 
        TSCR2 &=0b11111000; //start by clearing hte prescaler bits 
-       TSCR2 |=0b00000100;//now set the prescaler 
+       TSCR2 |=0b00000010;//now set the prescaler 
        TIOS |=0b00000001;// Tios0 set to output compare 
        TCTL2 &=0b11111100; //start by clearing bits for output to PT0 
        TCTL2 |=0b00000001;//set low bit for TC0 for toggle (01) on PT0
