@@ -31,6 +31,15 @@ void lcdLabels(char*,char*,char*,char*);
  %03X - pad with zeros in front 
  %010.4f  pad with zeors 10chars wide 4 decimals 
 
+   if(sprintf(str,"%02u", iMinutes) >0) {
+                   Set_R_C(1,5);
+                   lcdString(str);
+          }
+          if(sprintf(str,":%02u", iSeconds) >0) {
+                   Set_R_C(1,8);
+                  lcdString(str);
+
+          }
 
 
 */

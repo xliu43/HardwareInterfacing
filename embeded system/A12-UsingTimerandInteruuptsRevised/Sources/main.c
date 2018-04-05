@@ -84,19 +84,14 @@ void main(void) 	// main entry point
 	
 	for (;;)		//endless program loop
 	{
-	     
-          iSeconds=(++iTicks/100);
-              
-          iMinutes=(iSeconds/60);
-          
-          iSeconds%=60;   
-          iMinutes%=60;
+	  
          if(sprintf(str,"%02u", iMinutes) >0) {
                    Set_R_C(1,5);
                    lcdString(str);
           }
           if(sprintf(str,":%02u", iSeconds) >0) {
-                   Set_R_C(1,8);                  lcdString(str);
+                   Set_R_C(1,8);
+                  lcdString(str);
 
           }
           
@@ -118,6 +113,19 @@ void main(void) 	// main entry point
   {
         TFLG1 =0b00000001; //acknowledge the interrupts 
         TC0 +=625; //next time 
+        
+        iTicks++;
+        if(iTicks==100) {
+           iTicks=0;
+           iSeconds++;
+           if(iSeconds==60) {
+              iSeconds=0;
+              iMinutes++;
+              if(iMinutes==60) {
+                 iMinutes=0;                
+              }
+           }
+        }
    
    }
 
