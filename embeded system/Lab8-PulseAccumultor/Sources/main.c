@@ -17,7 +17,7 @@
 *		Library includes - your libraries' header files
 ********************************************************************/
 //#include "IIC0_Lib.h"
-//#include "LCD_4Line_C.h" 
+#include "LCD_4Line_C.h" 
 //#include "Misc_Lib.h"
 //#include "LEDS_7Seg_C.h"
 #include "LEDS_7Seg_C.h"
@@ -59,8 +59,8 @@ void main(void) 	// main entry point
           PACTL=0x40;  //turn the thing on 
           lcdInit();
           
-           Set_R_C(0,2);
-           lcdString("Wind Speed Sensor");
+          Set_R_C(0,3);
+          lcdString("WindSpeedSensor");
   
  
 
@@ -77,16 +77,19 @@ void main(void) 	// main entry point
           PACN32=0;  
            
           dSpeed=0.1873*iCount+4.1643; //calculate Speed 
-            if(sprintf(str,"SenSor Freq %03u HZ", iCount) >0) {
+          
+          
+            if(sprintf(str,"SenSor Freq %3u HZ", iCount) >0) {
                    Set_R_C(1,0);
                    lcdString(str);
           } 
-                if(sprintf(str,"Wind Speed %03.0f HZ", dSpeed) >0) {
+              
+                if(sprintf(str,"Wind Speed %3.0f HZ", dSpeed) >0) {
                    Set_R_C(2,0);
                    lcdString(str);
           }  
-          
-          
+           
+               
                                           
    
     
