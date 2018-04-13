@@ -280,7 +280,7 @@ void main(void) 	// main entry point
                                                             }        
                
                
-         while( Get_Switches()!=0b00000001){
+         while( (sw=Get_Switches())!=0b00000001){
          
                
                Bot_8Out_C(sw);
@@ -305,9 +305,6 @@ void main(void) 	// main entry point
 ********************************************************************/
 
 
-
-/*******************************************************************/
-#include <hidef.h>      /* common defines and macros */
 
 
 
