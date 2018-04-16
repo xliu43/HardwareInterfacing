@@ -40,16 +40,17 @@
 ********************************************************************/
 
  //unsigned char Pos;
+  int counter=0;
  	char destString[25]="";                         //declaring a srouce and destination array 
  	char destStringTwo[25]="";
 	char srcString[2]="";                             //both filled with nulls 
 	char RxData;                                             //raw data 
-	char str[20]="";                                                                                                                                         //careful have to decalre a capacity for sprintf to run properly 
-	float regularPrice=1;                                                    //atof only works on float 
+	char str[21]="";                                                                                                                                         //careful have to decalre a capacity for sprintf to run properly 
+	float regularPrice=0;                                                    //atof only works on float 
 	float midPrice=0;
 	float preminumPrice=0;
 	float liters=0;
-	float price=1;
+	float price=0;
 	unsigned char sw=0;
 	int GradeSelect=1;
 	
@@ -151,20 +152,21 @@ void main(void) 	// main entry point
 	{
 	     lcdClear();
 	     GradeSelect=1;
-	     if(sprintf(str,"Regular: %05.1f", regularPrice) >0) {
+	     if((counter=sprintf(str,"Regular: %05.1f", regularPrice)) >0) {
                    Set_R_C(0,0);
                    lcdString(str);
+                   Bot_8Out_C(counter);
           }   
                      
                      
-         if(sprintf(str,"Mid-Grade: %05.1f", midPrice) >0) {
+         if((counter=sprintf(str,"Mid-Grade: %05.1f", midPrice)) >0) {
                    Set_R_C(1,0);
                    lcdString(str);
           }   
                             
                           
                
-           if(sprintf(str,"Preminum: %05.1f", preminumPrice) >0) {
+           if((counter=sprintf(str,"Preminum: %05.1f", preminumPrice)) >0) {
                    Set_R_C(2,0);
                    lcdString(str);
           }  

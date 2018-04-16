@@ -41,8 +41,8 @@ Entry point: 0xC029 (_Startup)
 _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x2100     87
-  _Copy    *toCopyDownBeg 0xDA3B
+  _Range   pZeroOut       0x2100     90
+  _Copy    *toCopyDownBeg 0xDA41
 } _startupData;
 
 *********************************************************************************************
@@ -53,10 +53,10 @@ Section Name                    Size  Type     From       To       Segment
 .startData                        34     R     0xC031     0xC052   ROM_C000
 .rodata                          216     R     0xC053     0xC12A   ROM_C000
 .rodata1                         400     R     0xC12B     0xC2BA   ROM_C000
-.text                           4840     R     0xC2BB     0xD5A2   ROM_C000
-.copy                             23     R     0xDA3B     0xDA51   ROM_C000
+.text                           4846     R     0xC2BB     0xD5A8   ROM_C000
+.copy                             14     R     0xDA41     0xDA4E   ROM_C000
 .stack                           256   R/W     0x2000     0x20FF   RAM
-.data                             18   R/W     0x2100     0x2111   RAM
+.data                             10   R/W     0x2100     0x2109   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
 .abs_section_a                     1   N/I        0xA        0xA   .absSeg2
@@ -704,14 +704,14 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_3aa                   2   N/I      0x3AA      0x3AB   .absSeg644
 .abs_section_3ac                   2   N/I      0x3AC      0x3AD   .absSeg645
 .abs_section_3ae                   2   N/I      0x3AE      0x3AF   .absSeg646
-.bss                              66   R/W     0x2112     0x2153   RAM
-.common                            3   R/W     0x2154     0x2156   RAM
-RUNTIME                         1176     R     0xD5A3     0xDA3A   ROM_C000
+.bss                              77   R/W     0x210A     0x2156   RAM
+.common                            3   R/W     0x2157     0x2159   RAM
+RUNTIME                         1176     R     0xD5A9     0xDA40   ROM_C000
 .vectSeg647_vect                   2     R     0xFFFE     0xFFFF   .vectSeg647
 
 Summary of section sizes per section type:
-READ_ONLY (R):        1A54 (dec:     6740)
-READ_WRITE (R/W):      157 (dec:      343)
+READ_ONLY (R):        1A51 (dec:     6737)
+READ_WRITE (R/W):      15A (dec:      346)
 NO_INIT (N/I):         300 (dec:      768)
 
 *********************************************************************************************
@@ -1376,7 +1376,7 @@ MODULE:                 -- mc9s12xdp512.c.o --
      _XGR7                                      3AE       2       2       0   .abs_section_3ae
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                      C2BB     322     802      41   .text       
+     main                                      C2BB     328     808      41   .text       
 - VARIABLES:
      STRING.The.Gas.Pump.8                     C12B       D      13       1   .rodata1    
      STRING.Enter.Todays.prices.9              C138      14      20       1   .rodata1    
@@ -1403,18 +1403,19 @@ MODULE:                 -- main.c.o --
      STRING.Price...05.1f.30                   C28C       E      14       1   .rodata1    
      STRING.Liters...05.1f.31                  C29A       F      15       1   .rodata1    
      STRING.Your.Cost...05.1f.32               C2A9      12      18       1   .rodata1    
-     regularPrice                              2100       4       4       8   .data       
-     price                                     2104       4       4       8   .data       
-     GradeSelect                               2108       2       2       3   .data       
-     clearAndHome                              210A       8       8       1   .data       
-     destString                                2112      19      25       6   .bss        
-     srcString                                 212B       2       2       2   .bss        
-     str                                       212D      14      20      10   .bss        
-     midPrice                                  2141       4       4       8   .bss        
-     preminumPrice                             2145       4       4       8   .bss        
-     liters                                    2149       4       4       6   .bss        
-     sw                                        214D       1       1       3   .bss        
-     RxData                                    2154       1       1       3   .common     
+     GradeSelect                               2100       2       2       3   .data       
+     clearAndHome                              2102       8       8       1   .data       
+     counter                                   210A       2       2       4   .bss        
+     destString                                210C      19      25       6   .bss        
+     srcString                                 2125       2       2       2   .bss        
+     str                                       2127      15      21      10   .bss        
+     regularPrice                              213C       4       4       8   .bss        
+     midPrice                                  2140       4       4       8   .bss        
+     preminumPrice                             2144       4       4       8   .bss        
+     liters                                    2148       4       4       6   .bss        
+     price                                     214C       4       4       8   .bss        
+     sw                                        2150       1       1       3   .bss        
+     RxData                                    2157       1       1       3   .common     
 MODULE:                 -- Start12.c.o --
 - PROCEDURES:
      Init                                      C000      29      41       1   .init       
@@ -1425,9 +1426,9 @@ MODULE:                 -- Start12.c.o --
      __SEG_END_SSTACK                          2100       0       0       1               
 MODULE:                 -- CTYPE.C.o (ansixs.lib) --
 - PROCEDURES:
-     isdigit                                   C5DD       E      14       2   .text       
-     isspace                                   C5EB      17      23       1   .text       
-     toupper                                   C602      14      20       1   .text       
+     isdigit                                   C5E3       E      14       2   .text       
+     isspace                                   C5F1      17      23       1   .text       
+     toupper                                   C608      14      20       1   .text       
 - VARIABLES:
 MODULE:                 -- MATH.C.o (ansixs.lib) --
 - PROCEDURES:
@@ -1435,133 +1436,133 @@ MODULE:                 -- MATH.C.o (ansixs.lib) --
      infinity                                  C053       4       4       2   .rodata     
 MODULE:                 -- PRINTF.C.o (ansixs.lib) --
 - PROCEDURES:
-     Ten                                       C616      AC     172       3   .text       
-     vprintf                                   C6C2     8D4    2260     107   .text       
-     _out                                      CF96       9       9      14   .text       
-     deposit_char                              CF9F       A      10       1   .text       
-     sprintf                                   CFA9      27      39       9   .text       
+     Ten                                       C61C      AC     172       3   .text       
+     vprintf                                   C6C8     8D4    2260     107   .text       
+     _out                                      CF9C       9       9      14   .text       
+     deposit_char                              CFA5       A      10       1   .text       
+     sprintf                                   CFAF      27      39       9   .text       
 - VARIABLES:
      pow10                                     C057      28      40       4   .rodata     
      pow16                                     C07F      20      32       4   .rodata     
      pow8                                      C09F      2C      44       4   .rodata     
      fpow10                                    C0CB      30      48       1   .rodata     
      fpow_10                                   C0FB      30      48       1   .rodata     
-     pbuf                                      214E       6       6      14   .bss        
+     pbuf                                      2151       6       6      14   .bss        
 MODULE:                 -- STDLIB.C.o (ansixs.lib) --
 - PROCEDURES:
-     _strtod                                   CFD0     382     898      24   .text       
-     strtod                                    D352      10      16       1   .text       
+     _strtod                                   CFD6     382     898      24   .text       
+     strtod                                    D358      10      16       1   .text       
 - VARIABLES:
 MODULE:                 -- STRING.C.o (ansixs.lib) --
 - PROCEDURES:
-     strlen                                    D362      13      19       1   .text       
-     strcat                                    D375      17      23       1   .text       
+     strlen                                    D368      13      19       1   .text       
+     strcat                                    D37B      17      23       1   .text       
 - VARIABLES:
 MODULE:                 -- FADD.C.o (ansixs.lib) --
 - PROCEDURES:
-     F_ADDKL                                   D5A3      5E      94       1   RUNTIME     
-     _FADD                                     D601      15      21       6   RUNTIME     
-     _FSUB                                     D616      13      19       2   RUNTIME     
-     _FNEG                                     D629       B      11       2   RUNTIME     
+     F_ADDKL                                   D5A9      5E      94       1   RUNTIME     
+     _FADD                                     D607      15      21       6   RUNTIME     
+     _FSUB                                     D61C      13      19       2   RUNTIME     
+     _FNEG                                     D62F       B      11       2   RUNTIME     
 - VARIABLES:
 MODULE:                 -- FANSI.C.o (ansixs.lib) --
 - PROCEDURES:
-     F_FREXP                                   D634      1F      31       1   RUNTIME     
-     frexpf                                    D653      19      25       1   RUNTIME     
+     F_FREXP                                   D63A      1F      31       1   RUNTIME     
+     frexpf                                    D659      19      25       1   RUNTIME     
 - VARIABLES:
 MODULE:                 -- FCMP.C.o (ansixs.lib) --
 - PROCEDURES:
-     _FCMP                                     D66C      26      38       5   RUNTIME     
+     _FCMP                                     D672      26      38       5   RUNTIME     
 - VARIABLES:
 MODULE:                 -- FCONV.C.o (ansixs.lib) --
 - PROCEDURES:
-     F_TOLONGK                                 D692      32      50       1   RUNTIME     
-     F_FRLONGK                                 D6C4      1E      30       2   RUNTIME     
-     _FSFLOAT                                  D6E2      12      18       3   RUNTIME     
-     _FUFLOAT                                  D6F4      12      18       1   RUNTIME     
-     _FSTRUNC                                  D706      11      17       1   RUNTIME     
-     _FUTRUNC                                  D717       3       3       2   RUNTIME     
+     F_TOLONGK                                 D698      32      50       1   RUNTIME     
+     F_FRLONGK                                 D6CA      1E      30       2   RUNTIME     
+     _FSFLOAT                                  D6E8      12      18       3   RUNTIME     
+     _FUFLOAT                                  D6FA      12      18       1   RUNTIME     
+     _FSTRUNC                                  D70C      11      17       1   RUNTIME     
+     _FUTRUNC                                  D71D       3       3       2   RUNTIME     
 - VARIABLES:
 MODULE:                 -- FMUL.C.o (ansixs.lib) --
 - PROCEDURES:
-     F_DIVKL                                   D71A      84     132       1   RUNTIME     
-     F_MULKL                                   D79E      57      87       1   RUNTIME     
-     _FMUL                                     D7F5      14      20      11   RUNTIME     
-     _FDIV                                     D809      1E      30       5   RUNTIME     
+     F_DIVKL                                   D720      84     132       1   RUNTIME     
+     F_MULKL                                   D7A4      57      87       1   RUNTIME     
+     _FMUL                                     D7FB      14      20      11   RUNTIME     
+     _FDIV                                     D80F      1E      30       5   RUNTIME     
 - VARIABLES:
 MODULE:                 -- FREGS.C.o (ansixs.lib) --
 - PROCEDURES:
-     F_PULK                                    D827      15      21       4   RUNTIME     
-     F_PULL                                    D83C      15      21       4   RUNTIME     
-     F_PSHK                                    D851      13      19       6   RUNTIME     
-     F_TLK                                     D864       D      13       1   RUNTIME     
-     F_XGKL                                    D871      21      33       2   RUNTIME     
-     F_CLRK                                    D892       B      11       2   RUNTIME     
-     F_MAXK                                    D89D       9       9       2   RUNTIME     
-     F_NORMK                                   D8A6      37      55       4   RUNTIME     
+     F_PULK                                    D82D      15      21       4   RUNTIME     
+     F_PULL                                    D842      15      21       4   RUNTIME     
+     F_PSHK                                    D857      13      19       6   RUNTIME     
+     F_TLK                                     D86A       D      13       1   RUNTIME     
+     F_XGKL                                    D877      21      33       2   RUNTIME     
+     F_CLRK                                    D898       B      11       2   RUNTIME     
+     F_MAXK                                    D8A3       9       9       2   RUNTIME     
+     F_NORMK                                   D8AC      37      55       4   RUNTIME     
 - VARIABLES:
 MODULE:                 -- rtshc12.c.o (ansixs.lib) --
 - PROCEDURES:
-     _BDIVMODS                                 D8DD       B      11       4   RUNTIME     
-     _LNEG                                     D8E8       9       9       1   RUNTIME     
-     _lDivMod                                  D8F1      B9     185       2   RUNTIME     
-     _LDIVU                                    D9AA       E      14       1   RUNTIME     
-     _NEG_P                                    D9B8       C      12       1   RUNTIME     
-     _LMODU                                    D9C4      11      17       1   RUNTIME     
-     _CASE_DIRECT_BYTE                         D9D5       5       5       1   RUNTIME     
-     _CASE_CHECKED_BYTE                        D9DA      14      20       2   RUNTIME     
-     _CASE_SEARCH_8                            D9EE      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       DA05      1A      26       1   RUNTIME     
+     _BDIVMODS                                 D8E3       B      11       4   RUNTIME     
+     _LNEG                                     D8EE       9       9       1   RUNTIME     
+     _lDivMod                                  D8F7      B9     185       2   RUNTIME     
+     _LDIVU                                    D9B0       E      14       1   RUNTIME     
+     _NEG_P                                    D9BE       C      12       1   RUNTIME     
+     _LMODU                                    D9CA      11      17       1   RUNTIME     
+     _CASE_DIRECT_BYTE                         D9DB       5       5       1   RUNTIME     
+     _CASE_CHECKED_BYTE                        D9E0      14      20       2   RUNTIME     
+     _CASE_SEARCH_8                            D9F4      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       DA0B      1A      26       1   RUNTIME     
 - VARIABLES:
-     errno                                     2155       2       2       1   .common     
+     errno                                     2158       2       2       1   .common     
 MODULE:                 -- VREGS.C.o (ansixs.lib) --
 - PROCEDURES:
-     L_NEGK                                    DA1F       7       7       2   RUNTIME     
-     L_PSHK                                    DA26       8       8       1   RUNTIME     
-     UL_PULK                                   DA2E       3       3       1   RUNTIME     
-     SL_PULK                                   DA31       A      10       1   RUNTIME     
+     L_NEGK                                    DA25       7       7       2   RUNTIME     
+     L_PSHK                                    DA2C       8       8       1   RUNTIME     
+     UL_PULK                                   DA34       3       3       1   RUNTIME     
+     SL_PULK                                   DA37       A      10       1   RUNTIME     
 - VARIABLES:
 MODULE:                 -- Delay_C.c.o --
 - PROCEDURES:
-     Delay_C                                   D38C       E      14       1   .text       
+     Delay_C                                   D392       E      14       1   .text       
 - VARIABLES:
 MODULE:                 -- LCD_4Line_C.c.o --
 - PROCEDURES:
-     lcdRWUp                                   D39A       4       4       1   .text       
-     lcdEUp                                    D39E       4       4       4   .text       
-     lcdEDown                                  D3A2       4       4       4   .text       
-     lcdRSUp                                   D3A6       4       4       1   .text       
-     lcdRSDown                                 D3AA       4       4       1   .text       
-     lcdSDelay                                 D3AE       7       7       3   .text       
-     lcdLDelay                                 D3B5       7       7       4   .text       
-     lcdInit                                   D3BC      3E      62       1   .text       
-     lcdInst                                   D3FA      19      25       2   .text       
-     lcdData                                   D413      1B      27       1   .text       
-     lcdBusy                                   D42E      24      36       4   .text       
-     lcdAddr                                   D452       C      12       1   .text       
-     lcdString                                 D45E      26      38      10   .text       
-     lcdClear                                  D484       7       7       3   .text       
-     Set_R_C                                   D48B      35      53       5   .text       
+     lcdRWUp                                   D3A0       4       4       1   .text       
+     lcdEUp                                    D3A4       4       4       4   .text       
+     lcdEDown                                  D3A8       4       4       4   .text       
+     lcdRSUp                                   D3AC       4       4       1   .text       
+     lcdRSDown                                 D3B0       4       4       1   .text       
+     lcdSDelay                                 D3B4       7       7       3   .text       
+     lcdLDelay                                 D3BB       7       7       4   .text       
+     lcdInit                                   D3C2      3E      62       1   .text       
+     lcdInst                                   D400      19      25       2   .text       
+     lcdData                                   D419      1B      27       1   .text       
+     lcdBusy                                   D434      24      36       4   .text       
+     lcdAddr                                   D458       C      12       1   .text       
+     lcdString                                 D464      26      38      10   .text       
+     lcdClear                                  D48A       7       7       3   .text       
+     Set_R_C                                   D491      35      53       5   .text       
 - VARIABLES:
 MODULE:                 -- SCI_Lib_C.c.o --
 - PROCEDURES:
-     SCI0_RxByte                               D4C0       7       7       1   .text       
-     SCI0_Init19200                            D4C7       E      14       1   .text       
-     SCI0_TxByte                               D4D5       9       9       2   .text       
-     SCI0_TxString                             D4DE       F      15       8   .text       
+     SCI0_RxByte                               D4C6       7       7       1   .text       
+     SCI0_Init19200                            D4CD       E      14       1   .text       
+     SCI0_TxByte                               D4DB       9       9       2   .text       
+     SCI0_TxString                             D4E4       F      15       8   .text       
 - VARIABLES:
 MODULE:                 -- Switches_C.c.o --
 - PROCEDURES:
-     Sw_Init                                   D4ED       4       4       1   .text       
-     Get_Switches                              D4F1      1B      27       2   .text       
-     Wait_For_Switch_Up                        D50C      10      16       2   .text       
+     Sw_Init                                   D4F3       4       4       1   .text       
+     Get_Switches                              D4F7      1B      27       2   .text       
+     Wait_For_Switch_Up                        D512      10      16       2   .text       
 - VARIABLES:
 MODULE:                 -- LEDS_7Seg_C_Revised.c.o --
 - PROCEDURES:
-     LEDS_7Seg_Init_C                          D51C      2F      47       1   .text       
-     Clear_7Seg                                D54B      1B      27       2   .text       
-     Char_7Seg_C                               D566      1E      30       2   .text       
-     Bot_8Out_C                                D584      1F      31       1   .text       
+     LEDS_7Seg_Init_C                          D522      2F      47       1   .text       
+     Clear_7Seg                                D551      1B      27       2   .text       
+     Char_7Seg_C                               D56C      1E      30       2   .text       
+     Bot_8Out_C                                D58A      1F      31       2   .text       
 - VARIABLES:
 
 *********************************************************************************************
@@ -1569,7 +1570,7 @@ MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   mc9s12xdp512.c.o                           768      0      0
-  main.c.o                                    79    802    400
+  main.c.o                                    82    808    400
   Start12.c.o                                  0     49      0
   CTYPE.C.o (ansixs.lib)                       0     57      0
   MATH.C.o (ansixs.lib)                        0      0      4
@@ -1589,7 +1590,7 @@ MODULE STATISTIC
   SCI_Lib_C.c.o                                0     45      0
   Switches_C.c.o                               0     47      0
   LEDS_7Seg_C_Revised.c.o                      0    135      0
-  other                                      256     36     23
+  other                                      256     36     14
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
@@ -1602,9 +1603,10 @@ SECTION: ".text"
   Get_Switches Wait_For_Switch_Up LEDS_7Seg_Init_C Clear_7Seg Char_7Seg_C 
   Bot_8Out_C 
 SECTION: ".data"
-  regularPrice price GradeSelect clearAndHome 
+  GradeSelect clearAndHome 
 SECTION: ".bss"
-  destString srcString str midPrice preminumPrice liters sw pbuf 
+  counter destString srcString str regularPrice midPrice preminumPrice liters 
+  price sw pbuf 
 SECTION: ".init"
   Init _Startup 
 SECTION: ".rodata"
@@ -3575,20 +3577,21 @@ OBJECT LIST SORTED BY ADDRESS
      _XGR5                                      3AA       2       2       0   .abs_section_3aa
      _XGR6                                      3AC       2       2       0   .abs_section_3ac
      _XGR7                                      3AE       2       2       0   .abs_section_3ae
-     regularPrice                              2100       4       4       8   .data       
-     price                                     2104       4       4       8   .data       
-     GradeSelect                               2108       2       2       3   .data       
-     clearAndHome                              210A       8       8       1   .data       
-     destString                                2112      19      25       6   .bss        
-     srcString                                 212B       2       2       2   .bss        
-     str                                       212D      14      20      10   .bss        
-     midPrice                                  2141       4       4       8   .bss        
-     preminumPrice                             2145       4       4       8   .bss        
-     liters                                    2149       4       4       6   .bss        
-     sw                                        214D       1       1       3   .bss        
-     pbuf                                      214E       6       6      14   .bss        
-     RxData                                    2154       1       1       3   .common     
-     errno                                     2155       2       2       1   .common     
+     GradeSelect                               2100       2       2       3   .data       
+     clearAndHome                              2102       8       8       1   .data       
+     counter                                   210A       2       2       4   .bss        
+     destString                                210C      19      25       6   .bss        
+     srcString                                 2125       2       2       2   .bss        
+     str                                       2127      15      21      10   .bss        
+     regularPrice                              213C       4       4       8   .bss        
+     midPrice                                  2140       4       4       8   .bss        
+     preminumPrice                             2144       4       4       8   .bss        
+     liters                                    2148       4       4       6   .bss        
+     price                                     214C       4       4       8   .bss        
+     sw                                        2150       1       1       3   .bss        
+     pbuf                                      2151       6       6      14   .bss        
+     RxData                                    2157       1       1       3   .common     
+     errno                                     2158       2       2       1   .common     
      Init                                      C000      29      41       1   .init       
      _Startup                                  C029       8       8       0   .init       
      infinity                                  C053       4       4       2   .rodata     
@@ -3622,85 +3625,85 @@ OBJECT LIST SORTED BY ADDRESS
      STRING.Price...05.1f.30                   C28C       E      14       1   .rodata1    
      STRING.Liters...05.1f.31                  C29A       F      15       1   .rodata1    
      STRING.Your.Cost...05.1f.32               C2A9      12      18       1   .rodata1    
-     main                                      C2BB     322     802      41   .text       
-     isdigit                                   C5DD       E      14       2   .text       
-     isspace                                   C5EB      17      23       1   .text       
-     toupper                                   C602      14      20       1   .text       
-     Ten                                       C616      AC     172       3   .text       
-     vprintf                                   C6C2     8D4    2260     107   .text       
-     _out                                      CF96       9       9      14   .text       
-     deposit_char                              CF9F       A      10       1   .text       
-     sprintf                                   CFA9      27      39       9   .text       
-     _strtod                                   CFD0     382     898      24   .text       
-     strtod                                    D352      10      16       1   .text       
-     strlen                                    D362      13      19       1   .text       
-     strcat                                    D375      17      23       1   .text       
-     Delay_C                                   D38C       E      14       1   .text       
-     lcdRWUp                                   D39A       4       4       1   .text       
-     lcdEUp                                    D39E       4       4       4   .text       
-     lcdEDown                                  D3A2       4       4       4   .text       
-     lcdRSUp                                   D3A6       4       4       1   .text       
-     lcdRSDown                                 D3AA       4       4       1   .text       
-     lcdSDelay                                 D3AE       7       7       3   .text       
-     lcdLDelay                                 D3B5       7       7       4   .text       
-     lcdInit                                   D3BC      3E      62       1   .text       
-     lcdInst                                   D3FA      19      25       2   .text       
-     lcdData                                   D413      1B      27       1   .text       
-     lcdBusy                                   D42E      24      36       4   .text       
-     lcdAddr                                   D452       C      12       1   .text       
-     lcdString                                 D45E      26      38      10   .text       
-     lcdClear                                  D484       7       7       3   .text       
-     Set_R_C                                   D48B      35      53       5   .text       
-     SCI0_RxByte                               D4C0       7       7       1   .text       
-     SCI0_Init19200                            D4C7       E      14       1   .text       
-     SCI0_TxByte                               D4D5       9       9       2   .text       
-     SCI0_TxString                             D4DE       F      15       8   .text       
-     Sw_Init                                   D4ED       4       4       1   .text       
-     Get_Switches                              D4F1      1B      27       2   .text       
-     Wait_For_Switch_Up                        D50C      10      16       2   .text       
-     LEDS_7Seg_Init_C                          D51C      2F      47       1   .text       
-     Clear_7Seg                                D54B      1B      27       2   .text       
-     Char_7Seg_C                               D566      1E      30       2   .text       
-     Bot_8Out_C                                D584      1F      31       1   .text       
-     F_ADDKL                                   D5A3      5E      94       1   RUNTIME     
-     _FADD                                     D601      15      21       6   RUNTIME     
-     _FSUB                                     D616      13      19       2   RUNTIME     
-     _FNEG                                     D629       B      11       2   RUNTIME     
-     F_FREXP                                   D634      1F      31       1   RUNTIME     
-     frexpf                                    D653      19      25       1   RUNTIME     
-     _FCMP                                     D66C      26      38       5   RUNTIME     
-     F_TOLONGK                                 D692      32      50       1   RUNTIME     
-     F_FRLONGK                                 D6C4      1E      30       2   RUNTIME     
-     _FSFLOAT                                  D6E2      12      18       3   RUNTIME     
-     _FUFLOAT                                  D6F4      12      18       1   RUNTIME     
-     _FSTRUNC                                  D706      11      17       1   RUNTIME     
-     _FUTRUNC                                  D717       3       3       2   RUNTIME     
-     F_DIVKL                                   D71A      84     132       1   RUNTIME     
-     F_MULKL                                   D79E      57      87       1   RUNTIME     
-     _FMUL                                     D7F5      14      20      11   RUNTIME     
-     _FDIV                                     D809      1E      30       5   RUNTIME     
-     F_PULK                                    D827      15      21       4   RUNTIME     
-     F_PULL                                    D83C      15      21       4   RUNTIME     
-     F_PSHK                                    D851      13      19       6   RUNTIME     
-     F_TLK                                     D864       D      13       1   RUNTIME     
-     F_XGKL                                    D871      21      33       2   RUNTIME     
-     F_CLRK                                    D892       B      11       2   RUNTIME     
-     F_MAXK                                    D89D       9       9       2   RUNTIME     
-     F_NORMK                                   D8A6      37      55       4   RUNTIME     
-     _BDIVMODS                                 D8DD       B      11       4   RUNTIME     
-     _LNEG                                     D8E8       9       9       1   RUNTIME     
-     _lDivMod                                  D8F1      B9     185       2   RUNTIME     
-     _LDIVU                                    D9AA       E      14       1   RUNTIME     
-     _NEG_P                                    D9B8       C      12       1   RUNTIME     
-     _LMODU                                    D9C4      11      17       1   RUNTIME     
-     _CASE_DIRECT_BYTE                         D9D5       5       5       1   RUNTIME     
-     _CASE_CHECKED_BYTE                        D9DA      14      20       2   RUNTIME     
-     _CASE_SEARCH_8                            D9EE      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       DA05      1A      26       1   RUNTIME     
-     L_NEGK                                    DA1F       7       7       2   RUNTIME     
-     L_PSHK                                    DA26       8       8       1   RUNTIME     
-     UL_PULK                                   DA2E       3       3       1   RUNTIME     
-     SL_PULK                                   DA31       A      10       1   RUNTIME     
+     main                                      C2BB     328     808      41   .text       
+     isdigit                                   C5E3       E      14       2   .text       
+     isspace                                   C5F1      17      23       1   .text       
+     toupper                                   C608      14      20       1   .text       
+     Ten                                       C61C      AC     172       3   .text       
+     vprintf                                   C6C8     8D4    2260     107   .text       
+     _out                                      CF9C       9       9      14   .text       
+     deposit_char                              CFA5       A      10       1   .text       
+     sprintf                                   CFAF      27      39       9   .text       
+     _strtod                                   CFD6     382     898      24   .text       
+     strtod                                    D358      10      16       1   .text       
+     strlen                                    D368      13      19       1   .text       
+     strcat                                    D37B      17      23       1   .text       
+     Delay_C                                   D392       E      14       1   .text       
+     lcdRWUp                                   D3A0       4       4       1   .text       
+     lcdEUp                                    D3A4       4       4       4   .text       
+     lcdEDown                                  D3A8       4       4       4   .text       
+     lcdRSUp                                   D3AC       4       4       1   .text       
+     lcdRSDown                                 D3B0       4       4       1   .text       
+     lcdSDelay                                 D3B4       7       7       3   .text       
+     lcdLDelay                                 D3BB       7       7       4   .text       
+     lcdInit                                   D3C2      3E      62       1   .text       
+     lcdInst                                   D400      19      25       2   .text       
+     lcdData                                   D419      1B      27       1   .text       
+     lcdBusy                                   D434      24      36       4   .text       
+     lcdAddr                                   D458       C      12       1   .text       
+     lcdString                                 D464      26      38      10   .text       
+     lcdClear                                  D48A       7       7       3   .text       
+     Set_R_C                                   D491      35      53       5   .text       
+     SCI0_RxByte                               D4C6       7       7       1   .text       
+     SCI0_Init19200                            D4CD       E      14       1   .text       
+     SCI0_TxByte                               D4DB       9       9       2   .text       
+     SCI0_TxString                             D4E4       F      15       8   .text       
+     Sw_Init                                   D4F3       4       4       1   .text       
+     Get_Switches                              D4F7      1B      27       2   .text       
+     Wait_For_Switch_Up                        D512      10      16       2   .text       
+     LEDS_7Seg_Init_C                          D522      2F      47       1   .text       
+     Clear_7Seg                                D551      1B      27       2   .text       
+     Char_7Seg_C                               D56C      1E      30       2   .text       
+     Bot_8Out_C                                D58A      1F      31       2   .text       
+     F_ADDKL                                   D5A9      5E      94       1   RUNTIME     
+     _FADD                                     D607      15      21       6   RUNTIME     
+     _FSUB                                     D61C      13      19       2   RUNTIME     
+     _FNEG                                     D62F       B      11       2   RUNTIME     
+     F_FREXP                                   D63A      1F      31       1   RUNTIME     
+     frexpf                                    D659      19      25       1   RUNTIME     
+     _FCMP                                     D672      26      38       5   RUNTIME     
+     F_TOLONGK                                 D698      32      50       1   RUNTIME     
+     F_FRLONGK                                 D6CA      1E      30       2   RUNTIME     
+     _FSFLOAT                                  D6E8      12      18       3   RUNTIME     
+     _FUFLOAT                                  D6FA      12      18       1   RUNTIME     
+     _FSTRUNC                                  D70C      11      17       1   RUNTIME     
+     _FUTRUNC                                  D71D       3       3       2   RUNTIME     
+     F_DIVKL                                   D720      84     132       1   RUNTIME     
+     F_MULKL                                   D7A4      57      87       1   RUNTIME     
+     _FMUL                                     D7FB      14      20      11   RUNTIME     
+     _FDIV                                     D80F      1E      30       5   RUNTIME     
+     F_PULK                                    D82D      15      21       4   RUNTIME     
+     F_PULL                                    D842      15      21       4   RUNTIME     
+     F_PSHK                                    D857      13      19       6   RUNTIME     
+     F_TLK                                     D86A       D      13       1   RUNTIME     
+     F_XGKL                                    D877      21      33       2   RUNTIME     
+     F_CLRK                                    D898       B      11       2   RUNTIME     
+     F_MAXK                                    D8A3       9       9       2   RUNTIME     
+     F_NORMK                                   D8AC      37      55       4   RUNTIME     
+     _BDIVMODS                                 D8E3       B      11       4   RUNTIME     
+     _LNEG                                     D8EE       9       9       1   RUNTIME     
+     _lDivMod                                  D8F7      B9     185       2   RUNTIME     
+     _LDIVU                                    D9B0       E      14       1   RUNTIME     
+     _NEG_P                                    D9BE       C      12       1   RUNTIME     
+     _LMODU                                    D9CA      11      17       1   RUNTIME     
+     _CASE_DIRECT_BYTE                         D9DB       5       5       1   RUNTIME     
+     _CASE_CHECKED_BYTE                        D9E0      14      20       2   RUNTIME     
+     _CASE_SEARCH_8                            D9F4      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       DA0B      1A      26       1   RUNTIME     
+     L_NEGK                                    DA25       7       7       2   RUNTIME     
+     L_PSHK                                    DA2C       8       8       1   RUNTIME     
+     UL_PULK                                   DA34       3       3       1   RUNTIME     
+     SL_PULK                                   DA37       A      10       1   RUNTIME     
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
@@ -3762,28 +3765,16 @@ rtshc12.c.o (ansixs.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xDA3B ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xDA41 ---- SIZE       4 ---
 Filling bytes inserted
- 00112100
-------- ROM-ADDRESS: 0xDA3F ---- RAM-ADDRESS: 0x2100 ---- SIZE       2 ---
-Name of initialized Object : regularPrice
- 3F80
-------- ROM-ADDRESS: 0xDA41 ---- SIZE       2 ---
-Filling bytes inserted
- 0000
-------- ROM-ADDRESS: 0xDA43 ---- RAM-ADDRESS: 0x2104 ---- SIZE       2 ---
-Name of initialized Object : price
- 3F80
-------- ROM-ADDRESS: 0xDA45 ---- SIZE       3 ---
-Filling bytes inserted
- 000000
-------- ROM-ADDRESS: 0xDA48 ---- RAM-ADDRESS: 0x2109 ---- SIZE       1 ---
+ 00082101
+------- ROM-ADDRESS: 0xDA45 ---- RAM-ADDRESS: 0x2101 ---- SIZE       1 ---
 Name of initialized Object : GradeSelect:1
  01
-------- ROM-ADDRESS: 0xDA49 ---- RAM-ADDRESS: 0x210A ---- SIZE       7 ---
+------- ROM-ADDRESS: 0xDA46 ---- RAM-ADDRESS: 0x2102 ---- SIZE       7 ---
 Name of initialized Object : clearAndHome
  1B5B324A1B 5B48
-------- ROM-ADDRESS: 0xDA50 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xDA4D ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -3798,7 +3789,7 @@ main                      USES SCI0_Init19200 lcdInit Sw_Init LEDS_7Seg_Init_C
                                 regularPrice destString STRING...2.1H.11 
                                 STRING.Enter.Mid.Grade.Pric.12 midPrice STRING...3.1H.13 
                                 STRING.Enter..Preminum.Pric.14 preminumPrice lcdClear GradeSelect 
-                                STRING.Regular...05.1f.15 str sprintf Set_R_C 
+                                STRING.Regular...05.1f.15 str sprintf counter Set_R_C Bot_8Out_C 
                                 STRING.Mid.Grade...05.1f.16 STRING.Preminum...05.1f.17 
                                 STRING.Select.your.Grade.us.18 Get_Switches sw STRING.The.Gas.Pump.19 
                                 STRING.regular.Price...5.1f.20 STRING.Liters..21 price STRING.The.Gas.Pump.22 
@@ -3806,8 +3797,8 @@ main                      USES SCI0_Init19200 lcdInit Sw_Init LEDS_7Seg_Init_C
                                 STRING.Mid.Grade...5.1f.26 STRING.Liters..27 Wait_For_Switch_Up 
                                 STRING.Enter.Liters...28 liters STRING.The.Gas.Pump.29 
                                 STRING.Price...05.1f.30 STRING.Liters...05.1f.31 _FMUL _FDIV 
-                                STRING.Your.Cost...05.1f.32 Bot_8Out_C SCI0_TxByte RxData srcString strcat 
-                                strtod SCI0_RxByte clearAndHome 
+                                STRING.Your.Cost...05.1f.32 SCI0_TxByte RxData srcString strcat strtod 
+                                SCI0_RxByte clearAndHome 
 Ten                       USES fpow10 fpow_10 Ten _FMUL 
 vprintf                   USES vprintf _out _CASE_SEARCH_8_BYTE 
                                 _CASE_DIRECT_BYTE _CASE_SEARCH_8 pbuf _LNEG pow8 pow16 _FNEG 
@@ -4045,6 +4036,12 @@ DEPENDENCY TREE
  |  |     |  
  |  |     +- lcdInst              (see above)
  |  |        
+ |  +- Bot_8Out_C          
+ |  |  | 
+ |  |  +- Clear_7Seg          
+ |  |  |    
+ |  |  +- Char_7Seg_C         
+ |  |       
  |  +- Get_Switches        
  |  |  | 
  |  |  +- Delay_C             
@@ -4067,12 +4064,6 @@ DEPENDENCY TREE
  |  |  |     
  |  |  +- F_PSHK               (see above)
  |  |     
- |  +- Bot_8Out_C          
- |  |  | 
- |  |  +- Clear_7Seg          
- |  |  |    
- |  |  +- Char_7Seg_C         
- |  |       
  |  +- SCI0_TxByte          (see above)
  |  |  
  |  +- strcat              
@@ -4127,6 +4118,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 4
-Total size of all blocks to be downloaded: 6740
+Number of blocks to be downloaded: 5
+Total size of all blocks to be downloaded: 6737
 
